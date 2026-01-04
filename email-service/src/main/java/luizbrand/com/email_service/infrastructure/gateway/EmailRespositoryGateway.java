@@ -4,5 +4,5 @@ import luizbrand.com.email_service.core.gateway.EmailGateway;
 import org.springframework.stereotype.Component;
 
 @Component
-public class EmailRespositoryGetway implements EmailGateway {
+public class EmailRespositoryGateway implements EmailGateway {
 }
