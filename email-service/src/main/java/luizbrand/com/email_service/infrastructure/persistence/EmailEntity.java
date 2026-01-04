@@ -18,6 +18,8 @@ import java.util.UUID;
 @Table(name = "tb_email")
 public class EmailEntity {
 
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID emailId;
