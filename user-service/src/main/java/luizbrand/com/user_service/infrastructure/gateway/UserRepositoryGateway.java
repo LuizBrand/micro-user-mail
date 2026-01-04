@@ -1,4 +1,4 @@
-package luizbrand.com.user_service.infrastructure.getway;
+package luizbrand.com.user_service.infrastructure.gateway;
 
 import jakarta.transaction.Transactional;
 import luizbrand.com.user_service.core.domain.User;
