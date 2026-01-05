@@ -3,9 +3,11 @@ package luizbrand.com.user_service.infrastructure.gateway;
 import jakarta.transaction.Transactional;
 import luizbrand.com.user_service.core.domain.User;
 import luizbrand.com.user_service.core.gateway.UserGateway;
+import luizbrand.com.user_service.infrastructure.mapper.UserDtoMapper;
 import luizbrand.com.user_service.infrastructure.mapper.UserEntityMapper;
 import luizbrand.com.user_service.infrastructure.persistence.UserEntity;
 import luizbrand.com.user_service.infrastructure.persistence.UserRepository;
+import luizbrand.com.user_service.infrastructure.producer.UserProducer;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -14,24 +16,29 @@ import java.util.Optional;
 public class UserRepositoryGateway implements UserGateway {
 
     private final UserRepository userRepository;
-    private final UserEntityMapper userMapper;
+    private final UserEntityMapper userEntityMapper;
+    private final UserDtoMapper userDtoMapper;
+    private final UserProducer userProducer;
 
-    public UserRepositoryGateway(UserRepository userRepository, UserEntityMapper userMapper) {
+    public UserRepositoryGateway(UserRepository userRepository, UserEntityMapper userEntityMapper, UserDtoMapper userDtoMapper, UserProducer userProducer) {
         this.userRepository = userRepository;
-        this.userMapper = userMapper;
+        this.userEntityMapper = userEntityMapper;
+        this.userDtoMapper = userDtoMapper;
+        this.userProducer = userProducer;
     }
 
     @Override
     @Transactional
     public User createUser(User newUser) {
 
-        UserEntity savedUser = userRepository.save(userMapper.toUserEntity(newUser));
-        return userMapper.toDomain(savedUser);
+        UserEntity savedUser = userRepository.save(userEntityMapper.toUserEntity(newUser));
+        System.out.println(savedUser);
+        return userEntityMapper.toDomain(savedUser);
 
     }
 
     public Optional<User> findByEmail(String email) {
         Optional<UserEntity> user = userRepository.findByEmail(email);
-        return user.map(userMapper::toDomain);
+        return user.map(userEntityMapper::toDomain);
     }
 }
