@@ -17,13 +17,11 @@ public class UserRepositoryGateway implements UserGateway {
 
     private final UserRepository userRepository;
     private final UserEntityMapper userEntityMapper;
-    private final UserDtoMapper userDtoMapper;
     private final UserProducer userProducer;
 
-    public UserRepositoryGateway(UserRepository userRepository, UserEntityMapper userEntityMapper, UserDtoMapper userDtoMapper, UserProducer userProducer) {
+    public UserRepositoryGateway(UserRepository userRepository, UserEntityMapper userEntityMapper, UserProducer userProducer) {
         this.userRepository = userRepository;
         this.userEntityMapper = userEntityMapper;
-        this.userDtoMapper = userDtoMapper;
         this.userProducer = userProducer;
     }
 
@@ -32,7 +30,7 @@ public class UserRepositoryGateway implements UserGateway {
     public User createUser(User newUser) {
 
         UserEntity savedUser = userRepository.save(userEntityMapper.toUserEntity(newUser));
-        System.out.println(savedUser);
+        userProducer.sendUserCreatedEvent(savedUser);
         return userEntityMapper.toDomain(savedUser);
 
     }
