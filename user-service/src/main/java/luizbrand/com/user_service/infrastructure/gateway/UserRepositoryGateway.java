@@ -3,14 +3,15 @@ package luizbrand.com.user_service.infrastructure.gateway;
 import jakarta.transaction.Transactional;
 import luizbrand.com.user_service.core.domain.User;
 import luizbrand.com.user_service.core.gateway.UserGateway;
-import luizbrand.com.user_service.infrastructure.mapper.UserDtoMapper;
 import luizbrand.com.user_service.infrastructure.mapper.UserEntityMapper;
 import luizbrand.com.user_service.infrastructure.persistence.UserEntity;
 import luizbrand.com.user_service.infrastructure.persistence.UserRepository;
 import luizbrand.com.user_service.infrastructure.producer.UserProducer;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Component
 public class UserRepositoryGateway implements UserGateway {
@@ -35,8 +36,16 @@ public class UserRepositoryGateway implements UserGateway {
 
     }
 
+    @Override
     public Optional<User> findByEmail(String email) {
         Optional<UserEntity> user = userRepository.findByEmail(email);
         return user.map(userEntityMapper::toDomain);
+    }
+
+    @Override
+    public List<User> listAllUsers() {
+        return userRepository.findAll().stream()
+                .map(userEntityMapper::toDomain)
+                .collect(Collectors.toList());
     }
 }
