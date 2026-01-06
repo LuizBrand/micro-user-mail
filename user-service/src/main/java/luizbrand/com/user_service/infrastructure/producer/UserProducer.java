@@ -9,11 +9,9 @@ import org.springframework.stereotype.Component;
 public class UserProducer {
 
     private final RabbitTemplate rabbitTemplate;
-    private final FanoutExchange fanout;
 
-    public UserProducer(RabbitTemplate rabbitTemplate, FanoutExchange fanout) {
+    public UserProducer(RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
-        this.fanout = fanout;
     }
 
     public void sendUserCreatedEvent(UserEntity userEntity) {
