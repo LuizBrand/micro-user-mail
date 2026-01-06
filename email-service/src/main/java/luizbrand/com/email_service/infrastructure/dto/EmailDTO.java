@@ -3,7 +3,9 @@ package luizbrand.com.email_service.infrastructure.dto;
 import java.util.UUID;
 
 public record EmailDTO(
-        UUID emailId,
+        UUID userId,
+        String emailTo,
+        String emailFrom,
         String emailSubject,
         String emailBody
 ) {
