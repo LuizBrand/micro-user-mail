@@ -1,8 +1,8 @@
-package luizbrand.com.email_service.core.gateway;
+package luizbrand.com.email_service.core.usecases;
 
 import luizbrand.com.email_service.infrastructure.dto.EmailDTO;
 import luizbrand.com.email_service.infrastructure.persistence.EmailEntity;
 
-public interface EmailGateway {
-    EmailEntity sendEmail(EmailDTO emailDTO);
+public interface SendEmailCase {
+    EmailEntity execute(EmailDTO emailDTO);
 }

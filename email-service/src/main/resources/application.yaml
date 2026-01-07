@@ -17,6 +17,7 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
   rabbitmq:
+    queue: email-queue
     addresses: ${RABBITMQ_HOST}
     username: ${RABBITMQ_USER}
     password: ${RABBITMQ_PASS}
