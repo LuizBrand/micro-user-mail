@@ -77,7 +77,7 @@ You need to set the following environment variables for the services to work (or
 
 **RabbitMQ (CloudAMQP)**
 This project uses CloudAMQP for message queuing. You need to create an instance and get the credentials.
-*   `RABBITMQ_HOST`: Your CloudAMQP host (e.g., `puffin.rmq.cloudamqp.com`).
+*   `RABBITMQ_HOST`: Your CloudAMQP host.
 *   `RABBITMQ_USER`: Your CloudAMQP user.
 *   `RABBITMQ_PASS`: Your CloudAMQP password.
 *   `RABBITMQ_VHOST`: Your CloudAMQP vhost.
