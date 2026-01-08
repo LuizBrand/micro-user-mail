@@ -22,7 +22,7 @@ public class UserProducer {
                 userEntity.getUserID(),
                 userEntity.getEmail(),
                 "Welcome to my application",
-                 "Hello" + userEntity.getName() + ", welcome to my application\n\nThis is new application with microservices"
+                 "Hello " + userEntity.getName() + ", welcome to my application\n\nThis is new application with microservices"
         );
 
         rabbitTemplate.convertAndSend("", rountingKey, emailDTO);
